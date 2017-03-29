@@ -1,0 +1,16 @@
+app:
+  build:
+    image: bfosberry/myapp
+    dockerfile: ./Dockerfile
+  links:
+  - db
+  ports:
+  - "8080"
+  entrypoint: /usr/local/go/bin/go
+db:
+  image: postgres
+deploy:
+  build:
+    dockerfile: Dockerfile.deploy
+  encrypted_env_file: environments/production/cideploy.env.encrypted
+

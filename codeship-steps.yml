@@ -1,0 +1,10 @@
+- service: app
+  command: test ./...
+- service: app
+  type: push
+  image_name: bfosberry/myapp
+  encrypted_dockercfg_path: ./dockercfg.encrypted
+  tag: master 
+- service: deploy
+  tag: master
+  command: bin/deploy.sh

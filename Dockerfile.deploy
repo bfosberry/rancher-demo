@@ -1,0 +1,6 @@
+FROM bfosberry/rancher-compose
+
+ADD environments environments
+ADD bin/deploy.sh deploy.sh
+
+ENTRYPOINT ["./deploy.sh"]

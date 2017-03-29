@@ -1,0 +1,23 @@
+version: '2'
+services:
+  myapp:
+    image: bfosberry/myapp
+    stdin_open: true
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.sidekicks: db
+  db:
+    image: postgres
+    stdin_open: true
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+  MyappLB:
+    image: rancher/lb-service-haproxy:v0.6.2
+    ports:
+    - 8081:8081/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin
+      io.rancher.container.create_agent: 'true'
+      io.rancher.scheduler.global: 'true'
